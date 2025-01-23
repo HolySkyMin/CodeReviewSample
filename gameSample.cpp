@@ -30,7 +30,7 @@ public:
 
 int sendUserInfoToServer(USER_INFO &info)
 {
-	//MySocket sock("192.168.10.100");
+	//MySocket sock("192.168.10.100"); // << Review: 이거 지워주시면 훨씬 코드가 깔끔해져요!
 	MySocket sock("192.168.10.200");
 	if (sock.connect()) {
 		return sock.send(info);
@@ -42,7 +42,7 @@ int sendUserInfoToServer(USER_INFO &info)
 
 /*주석 생략*/
 void loadUserInfo(void) {
-	std::string strMessage;
+	std::string strMessage; // << Review: 혹시 이게 어디에 쓰는 변수인지 알려주실 수 있을까요?
 
 	//게임 사용로그 수집
 	if (!getGameLog()) {
@@ -52,7 +52,7 @@ void loadUserInfo(void) {
 
 	//사용자 정보를 기반으로 로그인 payload 데이터 생성
 	USER_INFO userInfo = { 0 };
-	//buildLoginPayload(userInfo);
+	//buildLoginPayload(userInfo); // << Review: 이거도 살짝 지워 주세요!!
 	buildLoginPayload(userInfo);
 	if (userInfo.payloadSize > 0) {
 		//사용자 정보를 서버에 전달
@@ -62,6 +62,6 @@ void loadUserInfo(void) {
 		logForUserLogin("ERROR: Failed to build user info");
 	}
 
-	logForUserLogin("Login process complete.");
+	logForUserLogin("Login process complete."); // << Review: 너무 잘하셨는데 이거만 저 위쪽으로 살짝 옮겨 주셨으면 좋겠어요!
 }
 
